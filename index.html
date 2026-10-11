@@ -5,13 +5,17 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Black Clover</title>
-    <link rel="icon" href="assets/Black Clover.png">
+    <link rel="icon" href="assets/favicon.ico">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-B/GM4XqrwHnWXNOWMbloTmrYXZg10cakYGmpfsR/bbzQ6JAJI4ihuyADKLnBgrCe" crossorigin="anonymous" />
     <link rel="stylesheet" href="styles.css" />
     <style>
         body {
-            background-image: linear-gradient(to bottom, rgb(254, 255, 246), rgb(255, 243, 132, 0.4));
+            background-image: url(assets/bg_pc.jpeg);
+            background-repeat: no-repeat;
+            background-position: center top;   /* or just center */
+            background-repeat: no-repeat;
+            background-size: cover;
         }
 
         @font-face {
@@ -19,8 +23,25 @@
             src: url(assets/BlackCloverFont.ttf);
         }
 
+        @font-face {
+            font-family: CloverFont;
+            src: url(assets/fonts/Fraunces-Italic-VariableFont_SOFT\,WONK\,opsz\,wght.ttf);
+        }
+
         .card {
             min-height: 100px;
+            border-color: maroon;
+        }
+
+        .glass-nav {
+            width: 300px;
+            padding: .5rem 1.5rem;
+            border-radius: 1rem;
+            background: rgba(255, 255, 255, 0.25) !important;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         }
     </style>
 
@@ -29,9 +50,10 @@
 
 
 <body>
-    <nav class="navbar md:navbar-expand bg-1">
-        <div class="container-fluid">
-
+    <nav class="navbar glass-nav mx-auto mt-3">
+        <div class="container justify-content-center">
+            <img src="assets/loading_point.png"
+                        style="height: 30px; width: 30px; object-fit: cover;">
         </div>
     </nav>
     <div class="container bg-primary-dark">
@@ -64,8 +86,8 @@
                     <img src="assets/yamitonacht.png"
                         style="height: 100%; width: 100%; object-fit: cover; object-position: top; border-radius: 1rem 1rem 1rem 1rem; ">
                     <div class="card-img-overlay">
-                        <h1 class="card-title mb-0 text-white" style="font-family: Clover;">Black Clover Returns!</h1>
-                        <h2 class="text-white" style="font-family: Clover;">October 3, 2026!</h2>
+                        <h1 class="card-title mb-0 text-white" style="font-family: CloverFont;">Black Clover Returns!</h1>
+                        <h2 class="text-white" style="font-family: CloverFont;">October 3, 2026!</h2>
                     </div>
                 </div>
                 <div class="card bg-secondary mt-2" style="height: 200px; border-radius: 1rem 1rem 1rem 10rem;">
@@ -74,7 +96,17 @@
                 </div>
             </div>
         </div>
-
+        <div class="row g-2">
+            <div class="col-12 g-1">
+               <div class="card bg-secondary mt-2" style=" height: 100px">
+                    <img src="assets/ft_bg_top.jpeg"
+                        style="height: 100%; width: 100%; object-fit: cover; object-position: middle; border-radius: 1rem 1rem 1rem 1rem; ">
+                    <div class="card-img-overlay">
+                        <h1 class="card-title mb-0 text-white" style="font-family: CloverFont; color: white;">My Magic is Never Giving Up!</h1>
+                    </div>
+               </div>
+            </div> 
+        </div>
         <div class="row g-2">
             <div class="col-4 g-2">
                 <div class="card bg-secondary mt-2 rounded-0"
