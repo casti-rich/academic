@@ -23,6 +23,15 @@
             text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
         }
 
+        .container {
+            background: linear-gradient(rgb(0, 80, 155), rgba(0, 121, 10));
+        }
+
+        .card-body {
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255, 255, 255, 0.5) transparent;
+        }
+
         body {
             background-image: url(assets/spaceship.jpg);
             background-repeat: no-repeat;
@@ -34,180 +43,255 @@
 </head>
 
 <body>
-    <div class="container" id="parent">
-        <div class="row g-1 mb-1">
-            <div class="col-12 col-sm-4">
-                <div class="card" style="height: 400px; overflow: hidden;">
-                    <img src="assets/nahida.png">
-                    <div class="card-img-overlay">
-                        <h2 class="card-title mb-0 text-black">
-                            <img src="assets/nahida_name.png" style="height: 75px;">
-                        </h2>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12 col-sm-8">
-                <div class="row g-0">
-                    <div class="col-12  mb-2" style="border-radius: 5px 0 0 0;">
-                        <div class="card">
-                            <div class="h3 text-center">
-                                Character Stats:
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-3 ">
-                        <div class="card" style="border-radius: 5px 0 0 0; height: 69px; ">
-                            <div class="p text-center">
-                                Max HP
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-3 ">
-                        <div class="card" style="border-radius: 0; height: 69px; ">
-                            <div class="p text-center">
-                                Max HP
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-3 ">
-                        <div class="card" style="border-radius: 0; height: 69px; ">
-                            <div class="p text-center">
-                                Crit Rate:
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-3 ">
-                        <div class="card" style="border-radius: 0 5px 0 0; height: 69px; ">
-                            <div class="p text-center">
-                                Max HP
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-3 ">
-                        <div class="card" style="border-radius: 0; height: 69px; ">
-                            <div class="p text-center">
-                                ATK:
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-3 ">
-                        <div class="card" style="border-radius: 0; height: 69px; ">
-                            <div class="p text-center">
-                                Max HP
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-3 ">
-                        <div class="card" style="border-radius: 0; height: 69px; ">
-                            <div class="p text-center">
-                                Crit DMG:
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-3 ">
-                        <div class="card" style="border-radius: 0; height: 69px; ">
-                            <div class="p text-center">
-                                Max HP
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-3 ">
-                        <div class="card" style="border-radius: 0; height: 69px; ">
-                            <div class="p text-center">
-                                DEF:
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-3 ">
-                        <div class="card" style="border-radius: 0; height: 69px; ">
-                            <div class="p text-center">
-                                Max HP
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-3 ">
-                        <div class="card" style="border-radius: 0; height: 69px; ">
-                            <div class="p text-center">
-                                Healing Bonus:
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-3 ">
-                        <div class="card" style="border-radius: 0 0 0 0; height: 69px; ">
-                            <div class="p text-center">
-                                Max HP
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-3 ">
-                        <div class="card" style="border-radius: 0 0 0 0; height: 69px; ">
-                            <div class="p text-center">
-                                Elemental Mastery:
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-3 ">
-                        <div class="card" style="border-radius: 0; height: 69px; ">
-                            <div class="p text-center">
-                                Max HP
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-3 ">
-                        <div class="card" style="border-radius: 0; height: 69px; ">
-                            <div class="p text-center">
-                                Incoming Healing Bonus:
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-3 ">
-                        <div class="card" style="border-radius: 0 0 0 0; height: 69px; ">
-                            <div class="p text-center">
-                                Max HP
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-3 ">
-                        <div class="card" style="border-radius: 0 0 0 5px; height: 69px; ">
-                            <div class="p text-center">
-                                Elemental DMG Bonus:
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-3 ">
-                        <div class="card" style="border-radius: 0 0 0 0; height: 69px; ">
-                            <div class="p text-center">
-                                Max HP
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-3 ">
-                        <div class="card" style="border-radius: 0; height: 69px; ">
-                            <div class="p text-center">
-                                Energy Recharge:
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-3 ">
-                        <div class="card" style="border-radius: 0 0 5px 0; height: 69px; ">
-                            <div class="p text-center">
-                                Max HP
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row g-1">
-            <div class="col-12">
-
-            </div>
-        </div>
-
+    <div class="container p-3 p-md-5" id="parent">
+        <!--content-->
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
+    <script>
+        var characters = [
+            {
+                Name: "assets/skirk_name.png",
+                Picture: "assets/skirk.png",
+                Level: 90,
+                HP: 21105,
+                ATK: 2093,
+                DEF: 934,
+                Elemental_Mastery: 19,
+                DMG: "Cryo", Bonus: "60.6%",
+                Crit_Rate: "60.2%",
+                Crit_DMG: "183.2%",
+                Healing_Bonus: "0%",
+                I_Healing_Bonus: "0%",
+                E_Recharge: "111.7%",
+
+                Weapons: [
+                    {
+                        Name: "Finale of the Deep",
+                        Picture: "assets/Finaleofthedeep.png",
+                        Level: 90,
+                        Title: "An End Sublime",
+                        Description: "When using an Elemental Skill, ATK will be increased by 12% for 15s, and a Bond of Life worth 25% of Max HP will be granted. This effect can be triggered once every 10s. When the Bond of Life is cleared, a maximum of 150 ATK will be gained based on 2.4% of the total amount of the Life Bond cleared, lasting for 15s."
+                    }
+
+                ],
+
+                Talents: [
+                    {
+                        Name: "Havoc: Sunder",
+                        Picture: "assets/Skirk_NA.png",
+                        Level: 6,
+                    },
+                    {
+                        Name: "Havoc: Warp",
+                        Picture: "assets/Skirk_skill.png",
+                        Level: 10
+                    },
+                    {
+                        Name: "Havoc: Warp",
+                        Picture: "assets/Skirk_burst.png",
+                        Level: 10
+                    },
+                    {
+                        Name: "Havoc: Warp",
+                        Picture: "assets/Skirk_passive1.png",
+                        Level: 10
+                    },
+                    {
+                        Name: "Havoc: Warp",
+                        Picture: "assets/Skirk_passive2.png",
+                        Level: 10
+                    },
+                    {
+                        Name: "Havoc: Warp",
+                        Picture: "assets/Skirk_passive3.png",
+                        Level: 10
+                    }
+
+                ],
+
+                Artifacts: [
+                    {
+                        Name: "Finale of the Deep Galleries",
+                        Picture: "assets/finaleofthedeepset.png",
+                        twoset: " Cryo DMG Bonus +15%",
+                        fourset: " When the equipping character has 0 Elemental Energy, Normal Attack DMG is increased by 60% and Elemental Burst DMG is increased by 60%. After the equipping character deals Normal Attack DMG, the aforementioned Elemental Burst effect will stop applying for 6s. After the equipping character deals Elemental Burst DMG, the aforementioned Normal Attack effect will stop applying for 6s. This effect can trigger even if the equipping character is off the field."
+
+                    }
+                ]
+            },
+                {
+                Name: "assets/Raiden_name.png",
+                Picture: "assets/Raiden.png",
+                Level: 90,
+                HP: 20094,
+                ATK: 1781,
+                DEF: 880,
+                Elemental_Mastery: 16,
+                DMG: "Electro", Bonus: "0.0%",
+                Crit_Rate: "60.6%",
+                Crit_DMG: "168.1%",
+                Healing_Bonus: "0.0%",
+                I_Healing_Bonus: "0.0%",
+                E_Recharge: "275.1%",
+
+                Weapons: [
+                    {
+                        Name: "Engulfing Lightning",
+                        Picture: "assets/Engulfing.png",
+                        Level: 90,
+                        Title: "Timeless Dream: Eternal Stove",
+                        Description: "When using an Elemental Skill, ATK will be increased by 12% for 15s, and a Bond of Life worth 25% of Max HP will be granted. This effect can be triggered once every 10s. When the Bond of Life is cleared, a maximum of 150 ATK will be gained based on 2.4% of the total amount of the Life Bond cleared, ATK increased by 28% of Energy Recharge over the base 100%. You can gain a maximum bonus of 80% ATK. Gain 30% Energy Recharge for 12s after using an Elemental Burst. for 15s."
+                    }
+
+                ],
+
+                Talents: [
+                    {
+                        Name: "Origin",
+                        Picture: "assets/Raiden_NA.png",
+                        Level: 7,
+                    },
+                    {
+                        Name: "Transcendence: Baleful Omen",
+                        Picture: "assets/Raiden_skill.png",
+                        Level: 10
+                    },
+                    {
+                        Name: "Secret Art: Musou Shinsetsu",
+                        Picture: "assets/Raiden_burst.png",
+                        Level: 10
+                    },
+                    {
+                        Name: "Wishes Unnumbered",
+                        Picture: "assets/Raiden_passive1.png",
+                        Level: 1
+                    },
+                    {
+                        Name: "Enlightened One",
+                        Picture: "assets/Raiden_passive2.png",
+                        Level: 1
+                    },
+                    {
+                        Name: "All-Preserver",
+                        Picture: "assets/Raiden_passive3.png",
+                        Level: 1
+                    }
+
+                ],
+
+                Artifacts: [
+                    {
+                        Name: "Emblem of Severed Fate",
+                        Picture: "assets/EoTM.png",
+                        twoset: " Energy Recharge +20%",
+                        fourset: " Increases Elemental Burst DMG by 25% of Energy Recharge. A maximum of 75% bonus DMG can be obtained in this way.When the eIncreases EIncrIncreaInIncreases Elemental Burst DMG by 25% of Energy Recharge. A maximum of 75% bonus DMG can be obtained in this way.creases Elemental Burst DMG by 25% of Energy Recharge. A maximum of 75% bonus DMG can be obtained in this way.ses Elemental Burst DMG by 25% of Energy Recharge. A maximum of 75% bonus DMG can be obtained in this way.eases Elemental Burst DMG by 25% of Energy Recharge. A maximum of 75% bonus DMG can be obtained in this way.emental Burst DMG by 25% of Energy Recharge. A maximum of 75% bonus DMG can be obtained in this way.quippingIncreases Elemental Burst DMG by 25% of Energy Recharge. A maximum of 75% bonus DMG can be obtained in this way. character has 0 Elemental Energy, Normal Attack DMG is increased by 60% and Elemental Burst DMG is increased by 60%. After the equipping character deals Normal Attack DMG, the aforementioned Elemental Burst effect will stop applying for 6s. After the equipping character deals Elemental Burst DMG, the aforementioned Normal Attack effect will stop applying for 6s. This effect can trigger even if the equipping character is off the field."
+
+                    }
+                ]
+            }
+
+        ]
+
+        var elParent = document.getElementById("parent");
+
+
+        for (var i = 0; i < characters.length; i++) {
+            var c = characters[i];
+            var w = c.Weapons[0];
+            var t = c.Talents[0];
+            var a = c.Artifacts[0];
+            elParent.innerHTML +=
+            `<div class="row g-1 mb-1">
+                <div class="col-12 col-md-4">
+                    <div class="card" style="height: 400px; overflow: hidden;">
+                        <img src="${c.Picture}">
+                        <div class="card-img-overlay">
+                            <h2 class="card-title mb-0 text-black">
+                                <img src="${c.Name}" style="height: 75px;">
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-8">
+                    <div class="card mb-2">
+                        <div class="h3 text-center">Character Stats:</div>
+                    </div>
+                    <div class="row g-0 overflow-hidden" style="border-radius: 5px;">
+                        <div class="col-6 col-md-3"><div class="card rounded-0" style="min-height: 69px;"><div class="p text-center">Max HP</div></div></div>
+                        <div class="col-6 col-md-3"><div class="card rounded-0" style="min-height: 69px;"><div class="p text-center">${c.HP}</div></div></div>
+                        <div class="col-6 col-md-3"><div class="card rounded-0" style="min-height: 69px;"><div class="p text-center">Crit Rate:</div></div></div>
+                        <div class="col-6 col-md-3"><div class="card rounded-0" style="min-height: 69px;"><div class="p text-center">${c.Crit_Rate}</div></div></div>
+                        <div class="col-6 col-md-3"><div class="card rounded-0" style="min-height: 69px;"><div class="p text-center">ATK:</div></div></div>
+                        <div class="col-6 col-md-3"><div class="card rounded-0" style="min-height: 69px;"><div class="p text-center">${c.ATK}</div></div></div>
+                        <div class="col-6 col-md-3"><div class="card rounded-0" style="min-height: 69px;"><div class="p text-center">Crit DMG:</div></div></div>
+                        <div class="col-6 col-md-3"><div class="card rounded-0" style="min-height: 69px;"><div class="p text-center">${c.Crit_DMG}</div></div></div>
+                        <div class="col-6 col-md-3"><div class="card rounded-0" style="min-height: 69px;"><div class="p text-center">DEF:</div></div></div>
+                        <div class="col-6 col-md-3"><div class="card rounded-0" style="min-height: 69px;"><div class="p text-center">${c.DEF}</div></div></div>
+                        <div class="col-6 col-md-3"><div class="card rounded-0" style="min-height: 69px;"><div class="p text-center">Healing Bonus:</div></div></div>
+                        <div class="col-6 col-md-3"><div class="card rounded-0" style="min-height: 69px;"><div class="p text-center">${c.Healing_Bonus}</div></div></div>
+                        <div class="col-6 col-md-3"><div class="card rounded-0" style="min-height: 69px;"><div class="p text-center">Elemental Mastery:</div></div></div>
+                        <div class="col-6 col-md-3"><div class="card rounded-0" style="min-height: 69px;"><div class="p text-center">${c.Elemental_Mastery}</div></div></div>
+                        <div class="col-6 col-md-3"><div class="card rounded-0" style="min-height: 69px;"><div class="p text-center">Incoming Healing Bonus:</div></div></div>
+                        <div class="col-6 col-md-3"><div class="card rounded-0" style="min-height: 69px;"><div class="p text-center">${c.I_Healing_Bonus}</div></div></div>
+                        <div class="col-6 col-md-3"><div class="card rounded-0" style="min-height: 69px;"><div class="p text-center">${c.DMG} DMG Bonus:</div></div></div>
+                        <div class="col-6 col-md-3"><div class="card rounded-0" style="min-height: 69px;"><div class="p text-center">${c.Bonus}</div></div></div>
+                        <div class="col-6 col-md-3"><div class="card rounded-0" style="min-height: 69px;"><div class="p text-center">Energy Recharge:</div></div></div>
+                        <div class="col-6 col-md-3"><div class="card rounded-0" style="min-height: 69px;"><div class="p text-center">${c.E_Recharge}</div></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row gx-1 mb-1 d-none d-lg-flex">
+                <div class="col-lg-2">
+                    <div class="card"><div class="h4 text-center">Weapon</div></div>
+                </div>
+                <div class="col-lg-10">
+                    <div class="card"><div class="h4 text-center">Artifacts & Talents</div></div>
+                </div>
+            </div>
+
+            <div class="row g-1 mb-4">
+                <div class="col-12 col-lg-2">
+                        <div class="card" style="height: 450px;">
+                            <img src="${w.Picture}" style="flex-shrink: 0;">
+                            <div class="card-body" style="overflow-y: auto;">
+                            <h5 class="card-title">${w.Name}</h5>
+                            <p>Lvl. ${w.Level}</p>
+                            <p class="card-text"><strong>${w.Title}</strong><br>
+                                ${w.Description}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-6">
+                    <div class="row g-1">
+                        ${c.Talents.map(t => `
+                            <div class="col-6 col-sm-4">
+                                <div class="card" style="height: 275px;">
+                                    <img src="${t.Picture}" style="height: 150px; object-fit: contain;">
+                                    <div class="card-body">
+                                        <h5 class="card-title">${t.Name}</h5>
+                                        <p>Lvl. ${t.Level}</p>
+                                    </div>
+                                </div>
+                            </div>`).join("")}
+                    </div>
+                </div>
+                <div class="col-12 col-lg-4">
+                    <div class="card" style="height: 635px;">
+                        <img src="${a.Picture}" style="flex-shrink: 0;">
+                        <div class="card-body" style="overflow-y: auto;">
+                            <h5 class="card-title">${a.Name}</h5>
+                            <p><strong>2-Pieces:</strong> ${a.twoset}</p>
+                            <p><strong>4-Pieces:</strong> ${a.fourset}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>`;
+        }
+    </script>
 </body>
 
 </html>
