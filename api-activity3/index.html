@@ -37,6 +37,10 @@
         --bs-btn-active-bg: #007373;
         --bs-btn-active-border-color: #007373;
     }
+
+    .btn {
+        width: 70px;
+    }
 </style>
 
 <body>
@@ -45,24 +49,39 @@
         <input type="text" id="search-input" class="form-control w-50 mx-auto mb-3" placeholder="Search character...">
         <div class="row my-3 text-center">
             <div class="col">
-                <div type=button class="btn bg-light" id="all-btn">All</div>
-                <div type=button class="btn bg-danger text-white" id="pyro-btn">Pyro</div>
-                <div type=button class="btn bg-info" id="cryo-btn">Cryo</div>
-                <div type=button class="btn btn-purple" id="electro-btn">Electro</div>
-                <div type=button class="btn bg-success text-white" id="dendro-btn">Dendro</div>
-                <div type=button class="btn btn-azure" id="anemo-btn">Anemo</div>
-                <div type=button class="btn bg-warning" id="geo-btn">Geo</div>
-                <div type=button class="btn bg-primary text-white" id="hydro-btn">Hydro</div>
+                <button type=button class="btn bg-light" id="all-btn">All</button>
+                <button type=button class="btn bg-danger text-white" id="pyro-btn">
+                    <img src="assets/pyro-icon.png" style="width: 30px;" class="d-block mx-auto">
+                    <span>Pyro</span>
+                </button>
+                <button type=button class="btn bg-info" id="cryo-btn">
+                    <img src="assets/cryo-icon.png" style="width: 30px;" class="d-block mx-auto">
+                    <span>Cryo</span>
+                </button>
+                <button type=button class="btn btn-purple" id="electro-btn">
+                    <img src="assets/electro -icon.png" style="width: 30px;" class="d-block mx-auto">
+                    <span>Electro</span>
+                </button>
+                <button type=button class="btn bg-success text-white" id="dendro-btn">
+                    <img src="assets/dendro-icon.png" style="width: 30px;" class="d-block mx-auto">
+                    <span>Dendro</span>
+                </button>
+                <button type=button class="btn btn-azure" id="anemo-btn">
+                    <img src="assets/anemo-icon.png" style="width: 30px;" class="d-block mx-auto">
+                    <span>Anemo</span>
+                </button>
+                <button type=button class="btn bg-warning" id="geo-btn">
+                    <img src="assets/geo-icon.png" style="width: 30px;" class="d-block mx-auto">
+                    <span>Geo</span>
+                </button>
+                <button type=button class="btn bg-primary text-white" id="hydro-btn">
+                    <img src="assets/hydro-icon.png" style="width: 30px;" class="d-block mx-auto">
+                    <span>Hydro</span>
+                </button>
             </div>
         </div>
         <div class="row">
             <div class="col d-flex flex-wrap justify-content-center" id="card_parent">
-                <div class="card p-2" style="width: 18rem;">
-                    <img src="" id="image">
-                    <div class="card-body">
-                        <h5 class="card-title" id="name"></h5>
-                    </div>
-                </div>
             </div>
         </div>
 
