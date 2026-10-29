@@ -7,6 +7,7 @@
     <title>API Genshin</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    
 </head>
 <style>
     .btn-purple {
@@ -43,49 +44,92 @@
     }
 </style>
 
-<body>
-
-    <div class="container-fluid bg-secondary p-5">
-        <input type="text" id="search-input" class="form-control w-50 mx-auto mb-3" placeholder="Search character...">
-        <div class="row my-3 text-center">
-            <div class="col">
-                <button type=button class="btn bg-light" id="all-btn">All</button>
-                <button type=button class="btn bg-danger text-white" id="pyro-btn">
-                    <img src="assets/pyro-icon.png" style="width: 30px;" class="d-block mx-auto">
-                    <span>Pyro</span>
+<body class="p-5">
+    <div class="container">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    <img src="assets/paimon-menu-icon.png" style="width: 50px;">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
                 </button>
-                <button type=button class="btn bg-info" id="cryo-btn">
-                    <img src="assets/cryo-icon.png" style="width: 30px;" class="d-block mx-auto">
-                    <span>Cryo</span>
-                </button>
-                <button type=button class="btn btn-purple" id="electro-btn">
-                    <img src="assets/electro -icon.png" style="width: 30px;" class="d-block mx-auto">
-                    <span>Electro</span>
-                </button>
-                <button type=button class="btn bg-success text-white" id="dendro-btn">
-                    <img src="assets/dendro-icon.png" style="width: 30px;" class="d-block mx-auto">
-                    <span>Dendro</span>
-                </button>
-                <button type=button class="btn btn-azure" id="anemo-btn">
-                    <img src="assets/anemo-icon.png" style="width: 30px;" class="d-block mx-auto">
-                    <span>Anemo</span>
-                </button>
-                <button type=button class="btn bg-warning" id="geo-btn">
-                    <img src="assets/geo-icon.png" style="width: 30px;" class="d-block mx-auto">
-                    <span>Geo</span>
-                </button>
-                <button type=button class="btn bg-primary text-white" id="hydro-btn">
-                    <img src="assets/hydro-icon.png" style="width: 30px;" class="d-block mx-auto">
-                    <span>Hydro</span>
-                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" data-bs-toggle="pill" data-bs-target="#pills-characters"
+                                type="button" role="tab"><i class="bi bi-house-fill me-1"></i>Characters</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" data-bs-toggle="pill" data-bs-target="#pills-weapons" type="button"
+                                role="tab"><i class="bi bi-lightning-charge-fill me-1"></i>Weapons</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" data-bs-toggle="pill" data-bs-target="#pills-artifacts"
+                                type="button" role="tab"><i class="bi bi-controller me-1"></i>Artifacts</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" data-bs-toggle="pill" data-bs-target="#pills-achievements"
+                                type="button" role="tab"><i class="bi bi-trophy-fill me-1"></i>Achievements</button>
+                        </li>
+                    </ul>
+                    <form class="d-flex" role="search">
+                        <input class="form-control me-2" type="search" id="search-input" placeholder="Search"
+                            aria-label="Search" />
+                    </form>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col d-flex flex-wrap justify-content-center" id="card_parent">
-            </div>
-        </div>
-
+        </nav>
     </div>
+    <main class="tab-content">
+        <section class="tab-pane fade" id="pills-characters" role="tabpanel" tabindex="0">
+            <div class="row my-3 text-start">
+                <div class="col">
+                    <button type=button class="btn bg-light" id="all-btn">All</button>
+                    <button type=button class="btn bg-danger text-white" id="pyro-btn">
+                        <img src="assets/pyro-icon.png" style="width: 30px;" class="d-block mx-auto">
+                        <span>Pyro</span>
+                    </button>
+                    <button type=button class="btn bg-info" id="cryo-btn">
+                        <img src="assets/cryo-icon.png" style="width: 30px;" class="d-block mx-auto">
+                        <span>Cryo</span>
+                    </button>
+                    <button type=button class="btn btn-purple" id="electro-btn">
+                        <img src="assets/electro-icon.png" style="width: 30px;" class="d-block mx-auto">
+                        <span>Electro</span>
+                    </button>
+                    <button type=button class="btn bg-success text-white" id="dendro-btn">
+                        <img src="assets/dendro-icon.png" style="width: 30px;" class="d-block mx-auto">
+                        <span>Dendro</span>
+                    </button>
+                    <button type=button class="btn btn-azure" id="anemo-btn">
+                        <img src="assets/anemo-icon.png" style="width: 30px;" class="d-block mx-auto">
+                        <span>Anemo</span>
+                    </button>
+                    <button type=button class="btn bg-warning" id="geo-btn">
+                        <img src="assets/geo-icon.png" style="width: 30px;" class="d-block mx-auto">
+                        <span>Geo</span>
+                    </button>
+                    <button type=button class="btn bg-primary text-white" id="hydro-btn">
+                        <img src="assets/hydro-icon.png" style="width: 30px;" class="d-block mx-auto">
+                        <span>Hydro</span>
+                    </button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col d-flex flex-wrap justify-content-start" id="card_parent">
+                </div>
+            </div>
+        </section>
+        <section class="tab-pane fade" id="pills-weapons" role="tabpanel" tabindex="0">
+
+        </section>
+        <section class="tab-pane fade" id="pills-artifacts" role="tabpanel" tabindex="0">
+
+        </section>
+    </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
@@ -104,6 +148,14 @@
         const elGeoBtn = document.getElementById("geo-btn");
         const elCryoBtn = document.getElementById("cryo-btn");
 
+        //Navigation Buttons
+        document.querySelectorAll('[data-goto]').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const tab = document.querySelector(`[data-bs-target="${btn.dataset.goto}"]`);
+                bootstrap.Tab.getOrCreateInstance(tab).show();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
 
         function capitalizeFirstLetter(str) {
             if (!str) return str;
@@ -115,7 +167,7 @@
 
             for (const id of characters) {
                 elCardParent.innerHTML += `
-            <div class="card p-2 m-2" style="width: 10rem;">
+            <div class="card p-2 m-2" style="width: 15rem;">
                 <img src="${API_URL}/characters/${id}/icon-big" alt="${id}">
                 <div class="card-body">
                     <h5 class="card-title">${capitalizeFirstLetter(id.replaceAll("-", " "))}</h5>
@@ -124,6 +176,8 @@
         `;
             }
         }
+
+        //Character Buttons
 
         elAllBtn.addEventListener("click", async () => {
             try {
