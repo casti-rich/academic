@@ -4,13 +4,27 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>API Genshin</title>
+    <title>API Valorant</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    
+
 </head>
 <style>
+    @font-face {
+        font-family: valo;
+        src: url(assets/Valorant\ Font.ttf);
+    }
+
+    body {
+        background-color: rgb(0, 24, 14);
+    }
+
+    h5 {
+        font-family: valo;
+    }
+
     .btn-purple {
+
         --bs-btn-color: #fff;
         --bs-btn-bg: #8b5cf6;
         --bs-btn-border-color: #8b5cf6;
@@ -45,34 +59,36 @@
 </style>
 
 <body class="p-5">
-    <div class="container">
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid" role="tablist">
+        <nav class="navbar navbar-expand-lg bg-transparent rounded"
+            style="background-color: rgba(255,255,255,0.08); backdrop-filter: blur(8px); outline: 2px solid #ff4655; outline-offset: 4px;">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">
-                    <img src="assets/paimon-menu-icon.png" style="width: 50px;">
-                </a>
+                <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#pills-home" type="button"
+                    role="tab">
+                    <img src="assets/V_Logomark_Red.png" style="width: 50px;">
+                </button>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0" role="tablist">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link" data-bs-toggle="pill" data-bs-target="#pills-characters"
-                                type="button" role="tab"><i class="bi bi-house-fill me-1"></i>Characters</button>
+                            <button class="nav-link text-white" data-bs-toggle="pill" data-bs-target="#pills-agents"
+                                type="button" role="tab"><i class="bi bi-house-fill me-1 "></i>Agents</button>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link" data-bs-toggle="pill" data-bs-target="#pills-weapons" type="button"
-                                role="tab"><i class="bi bi-lightning-charge-fill me-1"></i>Weapons</button>
+                            <button class="nav-link text-white" data-bs-toggle="pill" data-bs-target="#pills-guns"
+                                type="button" role="tab"><i class="bi bi-lightning-charge-fill me-1"></i>Guns</button>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link" data-bs-toggle="pill" data-bs-target="#pills-artifacts"
-                                type="button" role="tab"><i class="bi bi-controller me-1"></i>Artifacts</button>
+                            <button class="nav-link text-white" data-bs-toggle="pill" data-bs-target="#pills-gamemodes"
+                                type="button" role="tab"><i class="bi bi-controller me-1"></i>Gamemodes</button>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link" data-bs-toggle="pill" data-bs-target="#pills-achievements"
-                                type="button" role="tab"><i class="bi bi-trophy-fill me-1"></i>Achievements</button>
+                            <button class="nav-link text-white" data-bs-toggle="pill" data-bs-target="#pills-skins"
+                                type="button" role="tab"><i class="bi bi-trophy-fill me-1"></i>Skins</button>
                         </li>
                     </ul>
                     <form class="d-flex" role="search">
@@ -83,294 +99,77 @@
             </div>
         </nav>
     </div>
-    <main class="tab-content">
-        <section class="tab-pane fade" id="pills-characters" role="tabpanel" tabindex="0">
-            <div class="row my-3 text-start">
-                <div class="col">
-                    <button type=button class="btn bg-light" id="all-btn">All</button>
-                    <button type=button class="btn bg-danger text-white" id="pyro-btn">
-                        <img src="assets/pyro-icon.png" style="width: 30px;" class="d-block mx-auto">
-                        <span>Pyro</span>
-                    </button>
-                    <button type=button class="btn bg-info" id="cryo-btn">
-                        <img src="assets/cryo-icon.png" style="width: 30px;" class="d-block mx-auto">
-                        <span>Cryo</span>
-                    </button>
-                    <button type=button class="btn btn-purple" id="electro-btn">
-                        <img src="assets/electro-icon.png" style="width: 30px;" class="d-block mx-auto">
-                        <span>Electro</span>
-                    </button>
-                    <button type=button class="btn bg-success text-white" id="dendro-btn">
-                        <img src="assets/dendro-icon.png" style="width: 30px;" class="d-block mx-auto">
-                        <span>Dendro</span>
-                    </button>
-                    <button type=button class="btn btn-azure" id="anemo-btn">
-                        <img src="assets/anemo-icon.png" style="width: 30px;" class="d-block mx-auto">
-                        <span>Anemo</span>
-                    </button>
-                    <button type=button class="btn bg-warning" id="geo-btn">
-                        <img src="assets/geo-icon.png" style="width: 30px;" class="d-block mx-auto">
-                        <span>Geo</span>
-                    </button>
-                    <button type=button class="btn bg-primary text-white" id="hydro-btn">
-                        <img src="assets/hydro-icon.png" style="width: 30px;" class="d-block mx-auto">
-                        <span>Hydro</span>
-                    </button>
+    <div class="container-fluid pt-4">
+        <main class="tab-content">
+            <section class="tab-pane fade show active text-white" id="pills-home" role="tabpanel" tabindex="0">
+                <div class="min-vh-100 d-flex flex-column justify-content-center align-items-center text-center p-4">
+                    <img src="assets/V_Logomark_Red.png" alt="Valorant logo" style="width: 90px;" class="mb-4">
+                    <h1>VALORANT</h1>
+                    <p class="lead text-secondary mb-5 text-white">Browse agents, guns, gamemodes and skins.</p>
+                    <small class="text-secondary mt-5 text-white">Data from valorant-api.com</small>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col d-flex flex-wrap justify-content-start" id="card_parent">
+            </section>
+            <section class="tab-pane fade" id="pills-agents" role="tabpanel" tabindex="0">
+                <div class="row d-flex flex-wrap justify-content-start" id="card-parent">
+
                 </div>
-            </div>
-        </section>
-        <section class="tab-pane fade" id="pills-weapons" role="tabpanel" tabindex="0">
+            </section>
+            <section class="tab-pane fade" id="pills-guns" role="tabpanel" tabindex="0">
 
-        </section>
-        <section class="tab-pane fade" id="pills-artifacts" role="tabpanel" tabindex="0">
+            </section>
+            <section class="tab-pane fade" id="pills-gamemodes" role="tabpanel" tabindex="0">
 
-        </section>
-    </main>
+            </section>
+            <section class="tab-pane fade" id="pills-skins" role="tabpanel" tabindex="0">
+
+            </section>
+        </main>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
 
     <script>
 
-        const API_URL = "https://genshin.jmp.blue";
+        var elParent = document.getElementById("card-parent")
 
-        const elCardParent = document.getElementById("card_parent");
-        const elAllBtn = document.getElementById("all-btn");
-        const elPyroBtn = document.getElementById("pyro-btn");
-        const elElectroBtn = document.getElementById("electro-btn");
-        const elHydroBtn = document.getElementById("hydro-btn");
-        const elDendroBtn = document.getElementById("dendro-btn");
-        const elAnemoBtn = document.getElementById("anemo-btn");
-        const elGeoBtn = document.getElementById("geo-btn");
-        const elCryoBtn = document.getElementById("cryo-btn");
+        const getAgents = async () => {
+            elParent.innerHTML = '';
 
-        //Navigation Buttons
-        document.querySelectorAll('[data-goto]').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const tab = document.querySelector(`[data-bs-target="${btn.dataset.goto}"]`);
-                bootstrap.Tab.getOrCreateInstance(tab).show();
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-        });
+            const response = await fetch('https://valorant-api.com/v1/agents?isPlayableCharacter=true');
+            const result = await response.json();
+            const agents = result.data;
 
-        function capitalizeFirstLetter(str) {
-            if (!str) return str;
-            return str.charAt(0).toUpperCase() + str.slice(1);
-        }
+            for (var i = 0; i < agents.length; i++) {
 
-        function renderCharacters(characters) {
-            elCardParent.innerHTML = "";
+                var id = agents[i].uuid;
+                var image = agents[i].displayIcon;
+                var name = agents[i].displayName;
+                var role = agents[i].role.displayName;
+                var bg = agents[i].background
+                var colors = agents[i].backgroundGradientColors;
+                var gradient = 'linear-gradient(135deg, #' + colors[0] + ', #' + colors[1] + ')';
 
-            for (const id of characters) {
-                elCardParent.innerHTML += `
-            <div class="card p-2 m-2" style="width: 15rem;">
-                <img src="${API_URL}/characters/${id}/icon-big" alt="${id}">
-                <div class="card-body">
-                    <h5 class="card-title">${capitalizeFirstLetter(id.replaceAll("-", " "))}</h5>
+                elParent.innerHTML += `
+                <div class="card m-2 p-3" style="width: 36rem; background-image:`+ gradient + `; background-size: cover; background-position: center;">
+                    <div class="row g-0 align-items-center">
+                            <div class="col-5">
+                                <a href="view.html?id=`+ id + `"><img src="` + image + `" class="img-fluid rounded-start" alt="` + name + `"></a>
+                            </div> 
+                        <div class="col-7">
+                            <div class="card-body">
+                              <h5 class="card-title text-white">`+ name + `</h5>
+                              <p class="card-text text-white">`+ role + `</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        `;
+                `;
             }
-        }
+        };
 
-        //Character Buttons
-
-        elAllBtn.addEventListener("click", async () => {
-            try {
-                const res = await fetch(`${API_URL}/characters`);
-                const data = await res.json();
-                renderCharacters(data);
-            } catch (err) {
-                console.error(err);
-            }
-        });
-
-        elPyroBtn.addEventListener("click", async () => {
-            try {
-                const res = await fetch(`${API_URL}/characters`);
-                const ids = await res.json();
-
-                const details = await Promise.all(
-                    ids.map(async id => {
-                        const r = await fetch(`${API_URL}/characters/${id}`);
-                        const char = await r.json();
-                        return { id, vision: char.vision };
-                    })
-                );
-
-                const pyroIds = details
-                    .filter(char => char.vision === "Pyro")
-                    .map(char => char.id);
-
-                renderCharacters(pyroIds);
-            } catch (err) {
-                console.error(err);
-            }
-        });
-
-        elHydroBtn.addEventListener("click", async () => {
-            try {
-                const res = await fetch(`${API_URL}/characters`);
-                const ids = await res.json();
-
-                const details = await Promise.all(
-                    ids.map(async id => {
-                        const r = await fetch(`${API_URL}/characters/${id}`);
-                        const char = await r.json();
-                        return { id, vision: char.vision };
-                    })
-                );
-
-                const hydroIds = details
-                    .filter(char => char.vision === "Hydro")
-                    .map(char => char.id);
-
-                renderCharacters(hydroIds);
-            } catch (err) {
-                console.error(err);
-            }
-        });
-
-        elDendroBtn.addEventListener("click", async () => {
-            try {
-                const res = await fetch(`${API_URL}/characters`);
-                const ids = await res.json();
-
-                const details = await Promise.all(
-                    ids.map(async id => {
-                        const r = await fetch(`${API_URL}/characters/${id}`);
-                        const char = await r.json();
-                        return { id, vision: char.vision };
-                    })
-                );
-
-                const dendroIds = details
-                    .filter(char => char.vision === "Dendro")
-                    .map(char => char.id);
-
-                renderCharacters(dendroIds);
-            } catch (err) {
-                console.error(err);
-            }
-        });
-
-        elAnemoBtn.addEventListener("click", async () => {
-            try {
-                const res = await fetch(`${API_URL}/characters`);
-                const ids = await res.json();
-
-                const details = await Promise.all(
-                    ids.map(async id => {
-                        const r = await fetch(`${API_URL}/characters/${id}`);
-                        const char = await r.json();
-                        return { id, vision: char.vision };
-                    })
-                );
-
-                const anemoIds = details
-                    .filter(char => char.vision === "Anemo")
-                    .map(char => char.id);
-
-                renderCharacters(anemoIds);
-            } catch (err) {
-                console.error(err);
-            }
-        });
-
-        elElectroBtn.addEventListener("click", async () => {
-            try {
-                const res = await fetch(`${API_URL}/characters`);
-                const ids = await res.json();
-
-                const details = await Promise.all(
-                    ids.map(async id => {
-                        const r = await fetch(`${API_URL}/characters/${id}`);
-                        const char = await r.json();
-                        return { id, vision: char.vision };
-                    })
-                );
-
-                const electroIds = details
-                    .filter(char => char.vision === "Electro")
-                    .map(char => char.id);
-
-                renderCharacters(electroIds);
-            } catch (err) {
-                console.error(err);
-            }
-        });
-
-        elCryoBtn.addEventListener("click", async () => {
-            try {
-                const res = await fetch(`${API_URL}/characters`);
-                const ids = await res.json();
-
-                const details = await Promise.all(
-                    ids.map(async id => {
-                        const r = await fetch(`${API_URL}/characters/${id}`);
-                        const char = await r.json();
-                        return { id, vision: char.vision };
-                    })
-                );
-
-                const cryoIds = details
-                    .filter(char => char.vision === "Cryo")
-                    .map(char => char.id);
-
-                renderCharacters(cryoIds);
-            } catch (err) {
-                console.error(err);
-            }
-        });
-
-        elGeoBtn.addEventListener("click", async () => {
-            try {
-                const res = await fetch(`${API_URL}/characters`);
-                const ids = await res.json();
-
-                const details = await Promise.all(
-                    ids.map(async id => {
-                        const r = await fetch(`${API_URL}/characters/${id}`);
-                        const char = await r.json();
-                        return { id, vision: char.vision };
-                    })
-                );
-
-                const geoIds = details
-                    .filter(char => char.vision === "Geo")
-                    .map(char => char.id);
-
-                renderCharacters(geoIds);
-            } catch (err) {
-                console.error(err);
-            }
-        });
-
-        const elSearch = document.getElementById("search-input");
-
-        let allIds = [];
-
-        elSearch.addEventListener("input", async () => {
-            try {
-                if (!allIds.length) {
-                    const res = await fetch(`${API_URL}/characters`);
-                    allIds = await res.json();
-                }
-
-                const keyword = elSearch.value.trim().toLowerCase().replaceAll(" ", "-");
-
-                const results = allIds.filter(id => id.includes(keyword));
-
-                renderCharacters(results);
-            } catch (err) {
-                console.error(err);
-            }
-        });
-
+        getAgents();
 
     </script>
 </body>

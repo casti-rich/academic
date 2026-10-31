@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  </head>
+  <body>
+    <!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Agent</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background-color: rgb(0, 24, 14); }
+    </style>
+</head>
+<body class="p-5 text-white">
+    <a href="index.html" class="btn btn-outline-light mb-4" style="width: auto;">&larr; Back</a>
+
+    <div class="row g-4" id="agent-view"></div>
+
+    <script>
+        var elView = document.getElementById("agent-view");
+
+        var params = new URLSearchParams(window.location.search);
+        var id = params.get("id");
+
+        var clean = function (t) { return t.replace(/<\/?[a-z]+>/gi, ""); };
+
+        const getAgent = async () => {
+            const response = await fetch('https://valorant-api.com/v1/agents/' + id);
+            const result = await response.json();
+            const agent = result.data;
+
+            var image = agent.bustPortrait;
+            var name = agent.displayName;
+            var bg = agent.background;
+            var colors = agent.backgroundGradientColors;
+            var gradient = 'linear-gradient(135deg, #'+colors[0]+', #'+colors[1]+')';
+
+            var abilities = '';
+            for (var i = 0; i < agent.abilities.length; i++) {
+                var ab = agent.abilities[i];
+                var abName = ab.displayName;
+                var icon = ab.displayIcon ? '<img src="'+ab.displayIcon+'" style="width: 40px;" class="me-3">' : '';
+                abilities += `
+                    <div class="d-flex align-items-start mb-3">
+                        `+icon+`
+                        <div>
+                            <div class="fw-bold">`+abName+`</div>
+                            <div class="small">`+clean(ab.description)+`</div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            elView.innerHTML = `
+                <div class="col-12 col-lg-6">
+                    <div class="rounded d-flex justify-content-center"
+                         style="background-image: url('`+bg+`'), `+gradient+`; background-size: cover; background-position: center;">
+                        <img src="`+image+`" class="img-fluid" alt="`+name+`">
+                    </div>
+                </div>
+                <div class="col-12 col-lg-6">
+                    <h1>`+name+`</h1>
+                    <h5 class="text-secondary">`+agent.role.displayName+`</h5>
+                    <p class="my-4">`+agent.description+`</p>
+                    <h4>Abilities</h4>
+                    `+abilities+`
+                </div>
+            `;
+        };
+
+        getAgent();
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</body>
+</html>
