@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bundle</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: valo;
+            src: url("assets/Valorant Font.ttf");
+        }
+
+        body {
+            background-color: rgb(0, 24, 14);
+        }
+
+        h1,
+        h5 {
+            font-family: valo;
+        }
+
+        .showcase-box {
+            position: relative;
+        }
+
+        .showcase-box.has-video {
+            cursor: pointer;
+        }
+
+        .showcase-overlay {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.65);
+            color: #fff;
+            font-family: valo;
+            letter-spacing: 0.1em;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .showcase-box:hover .showcase-overlay {
+            opacity: 1;
+        }
+
+        @media (hover: none) {
+            .showcase-overlay {
+                opacity: 1;
+                background: rgba(0, 0, 0, 0.35);
+                align-items: flex-end;
+                padding-bottom: 8px;
+            }
+        }
+    </style>
+</head>
+
+<body class="p-5 text-white">
+    <a href="index.html" class="btn btn-outline-light mb-4">&larr; Back</a>
+
+    <div id="bundle-header"></div>
+    <div id="skin-parent" class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4"></div>
+
+    <div class="modal fade" id="showcaseModal" tabindex="-1">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content text-white" style="background-color: rgb(0, 24, 14); border: 2px solid #ff4655;">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title" id="showcaseTitle"></h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body pt-0">
+                    <div class="ratio ratio-16x9">
+                        <video id="showcaseVideo" controls></video>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        var elHeader = document.getElementById("bundle-header");
+        var elSkins = document.getElementById("skin-parent");
+
+        var params = new URLSearchParams(window.location.search);
+        var id = params.get("id");
+
+        const getBundle = async () => {
+
+            // bundle info
+            const bundleResponse = await fetch('https://valorant-api.com/v1/bundles/' + id);
+            const bundleResult = await bundleResponse.json();
+            const bundle = bundleResult.data;
+
+            var bundleName = bundle.displayName;
+            var bundleImage = bundle.displayIcon;
+            var description = bundle.description ? bundle.description : '';
+
+            elHeader.innerHTML = `
+                <div class="card text-white mb-4 overflow-hidden" style="background-color: rgba(255,255,255,0.08);">
+                    <div class="row g-0 align-items-center">
+                        <div class="col-12 col-md-5">
+                            <img src="` + bundleImage + `" class="w-100" alt="` + bundleName + `">
+                        </div>
+                        <div class="col-12 col-md-7 p-4">
+                            <h1>` + bundleName + `</h1>
+                            <p class="text-secondary mb-0">` + description + `</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            const skinResponse = await fetch('https://valorant-api.com/v1/weapons/skins');
+            const skinResult = await skinResponse.json();
+            const skins = skinResult.data;
+
+            var keyword = bundleName.replace(/ (Collection|Bundle|Edition)$/i, '');
+            var cards = '';
+
+            for (var i = 0; i < skins.length; i++) {
+
+                var name = skins[i].displayName;
+
+                if (!name.startsWith(keyword + ' ')) continue;
+
+                var image = skins[i].displayIcon;
+                if (!image && skins[i].levels.length > 0) image = skins[i].levels[0].displayIcon;
+                if (!image && skins[i].chromas.length > 0) image = skins[i].chromas[0].fullRender;
+                if (!image) continue;
+
+                var video = null;
+                for (var j = 0; j < skins[i].levels.length; j++) {
+                    if (skins[i].levels[j].streamedVideo) video = skins[i].levels[j].streamedVideo;
+                }
+                if (!video) {
+                    for (var k = 0; k < skins[i].chromas.length; k++) {
+                        if (!video && skins[i].chromas[k].streamedVideo) video = skins[i].chromas[k].streamedVideo;
+                    }
+                }
+
+                var media = '<img src="' + image + '" class="p-3" style="object-fit: contain;" alt="' + name + '">';
+                var overlay = '';
+                var trigger = '';
+                var boxClass = '';
+
+                if (video) {
+                    boxClass = ' has-video';
+                    trigger = ' data-bs-toggle="modal" data-bs-target="#showcaseModal" data-video="' + video + '" data-name="' + name + '"';
+                    overlay = '<div class="showcase-overlay">&#9654; Watch showcase</div>';
+                }
+
+                cards += `
+                <div class="col">
+                    <div class="card text-white h-100 overflow-hidden" style="background-color: rgba(255,255,255,0.08);">
+                        <div class="ratio ratio-16x9 showcase-box` + boxClass + `" style="background: radial-gradient(circle, rgba(255,70,85,0.25), transparent 70%);"` + trigger + `>
+                            ` + media + overlay + `
+                        </div>
+                        <div class="p-3">
+                            <h5 class="mb-0">` + name + `</h5>
+                        </div>
+                    </div>
+                </div>
+                `;
+            }
+
+            if (cards == '') cards = '<p class="text-secondary">No skins found for this bundle.</p>';
+            elSkins.innerHTML = cards;
+        };
+
+        getBundle();
+
+        var elModal = document.getElementById("showcaseModal");
+        var elVideo = document.getElementById("showcaseVideo");
+        var elTitle = document.getElementById("showcaseTitle");
+
+        elModal.addEventListener("show.bs.modal", function (event) {
+            var clicked = event.relatedTarget;
+            elTitle.textContent = clicked.dataset.name;
+            elVideo.src = clicked.dataset.video;
+            elVideo.play();
+        });
+
+        elModal.addEventListener("hidden.bs.modal", function () {
+            elVideo.pause();
+            elVideo.removeAttribute("src");
+            elVideo.load();
+        });
+    </script>
+</body>
+
+</html>
