@@ -79,8 +79,8 @@
                                 type="button" role="tab"><i class="bi bi-house-fill me-1 "></i>Agents</button>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link text-white" data-bs-toggle="pill" data-bs-target="#pills-guns"
-                                type="button" role="tab"><i class="bi bi-lightning-charge-fill me-1"></i>Guns</button>
+                            <button class="nav-link text-white" data-bs-toggle="pill" data-bs-target="#pills-maps"
+                                type="button" role="tab"><i class="bi bi-map-fill me-1"></i>Maps</button>
                         </li>
                         <li class="nav-item" role="presentation">
                             <button class="nav-link text-white" data-bs-toggle="pill" data-bs-target="#pills-gamemodes"
@@ -143,13 +143,13 @@
                     </ul>
                 </nav>
             </section>
-            <section class="tab-pane fade" id="pills-guns" role="tabpanel" tabindex="0">
-                <div class="d-flex flex-wrap justify-content-start" id="guns-parent"></div>
+            <section class="tab-pane fade" id="pills-maps" role="tabpanel" tabindex="0">
+                <div class="row d-flex flex-wrap justify-content-start" id="map-parent"></div>
                 <nav class="d-flex justify-content-center">
                     <ul class="pagination">
-                        <li class="page-item"><a class="page-link" onclick="changePage('agents', -1)">Previous</a></li>
-                        <li class="page-item"><a class="page-link" id="page-agents">1</a></li>
-                        <li class="page-item"><a class="page-link" onclick="changePage('agents', 1)">Next</a></li>
+                        <li class="page-item"><a class="page-link" onclick="prevMap()">Previous</a></li>
+                        <li class="page-item"><a class="page-link" id="mappage">1</a></li>
+                        <li class="page-item"><a class="page-link" onclick="nextMap()">Next</a></li>
                     </ul>
                 </nav>
             </section>
@@ -161,87 +161,96 @@
         crossorigin="anonymous"></script>
 
     <script>
-    // element initializations
-    var elParent = document.getElementById("card-parent")
-    var elGamemodes = document.getElementById("gamemode-parent");
-    var elSkins = document.getElementById("skin-parent");
+        // element initializations
+        var elParent = document.getElementById("card-parent")
+        var elGamemodes = document.getElementById("gamemode-parent");
+        var elSkins = document.getElementById("skin-parent");
+        var elMaps = document.getElementById("map-parent");
 
-    var urlParams = new URLSearchParams(window.location.search);
-    var perPage = 10;
+        var urlParams = new URLSearchParams(window.location.search);
+        var perPage = 10;
 
-    // agents
-    var agentPage = parseInt(urlParams.get('agentPage')) || 1;
-    var agentFinalPage = 1;
+        var roleColors = {
+            Duelist: '#ff4655',
+            Initiator: '#f5a623',
+            Controller: '#a855f7',
+            Sentinel: '#2dd4bf'
+        };
 
-    const getAgents = async () => {
-        elParent.innerHTML = '';
-        document.getElementById('agentpage').innerHTML = agentPage;
+        // agents
+        var agentPage = parseInt(urlParams.get('agentPage')) || 1;
+        var agentFinalPage = 1;
 
-        const response = await fetch('https://valorant-api.com/v1/agents?isPlayableCharacter=true');
-        const result = await response.json();
-        const agents = result.data;
+        const getAgents = async () => {
+            elParent.innerHTML = '';
+            document.getElementById('agentpage').innerHTML = agentPage;
 
-        agentFinalPage = Math.ceil(agents.length / perPage);
+            const response = await fetch('https://valorant-api.com/v1/agents?isPlayableCharacter=true');
+            const result = await response.json();
+            const agents = result.data;
 
-        var start = (agentPage - 1) * perPage;
-        var end = Math.min(agentPage * perPage, agents.length);
+            agentFinalPage = Math.ceil(agents.length / perPage);
 
-        for (var i = start; i < end; i++) {
+            var start = (agentPage - 1) * perPage;
+            var end = Math.min(agentPage * perPage, agents.length);
 
-            var id = agents[i].uuid;
-            var image = agents[i].displayIcon;
-            var name = agents[i].displayName;
-            var role = agents[i].role.displayName;
-            var bg = agents[i].background
-            var colors = agents[i].backgroundGradientColors;
-            var gradient = 'linear-gradient(135deg, #' + colors[0] + ', #' + colors[1] + ')';
+            for (var i = start; i < end; i++) {
 
-            elParent.innerHTML += `
-            <div class="card m-2 p-3" style="width: 36rem; background-image:`+ gradient + `; background-size: cover; background-position: center;">
+                var id = agents[i].uuid;
+                var image = agents[i].displayIcon;
+                var name = agents[i].displayName;
+                var role = agents[i].role.displayName;
+                var roleColor = roleColors[role] || '#ffffff';
+                var bg = agents[i].background
+                var colors = agents[i].backgroundGradientColors;
+                var gradient = 'linear-gradient(135deg, #' + colors[0] + ', #' + colors[1] + ')';
+
+                elParent.innerHTML += `
+            <div class="card m-2 p-3" style="width: 36rem; background-image:` + gradient + `; background-size: cover; background-position: center; border: 3px solid ` + roleColor + `; box-shadow: 0 0 14px ` + roleColor + `66;">
                 <div class="row g-0 align-items-center">
-                        <div class="col-5">
-                            <a href="view.html?id=`+ id + `&page=` + agentPage + `"><img src="` + image + `" class="img-fluid rounded-start" alt="` + name + `"></a>
-                        </div> 
+                    <div class="col-5">
+                        <a href="view.html?id=` + id + `&page=` + agentPage + `"><img src="` + image + `" class="img-fluid" alt="` + name + `"></a>
+                    </div>
                     <div class="col-7">
                         <div class="card-body">
-                          <h5 class="card-title text-white">`+ name + `</h5>
-                          <p class="card-text text-white">`+ role + `</p>
+                            <h5 class="card-title text-white">` + name + `</h5>
+                            <span class="badge rounded-0" style="background-color: ` + roleColor + `; color: #000;">` + role + `</span>
                         </div>
                     </div>
                 </div>
             </div>
             `;
+            }
+        };
+
+        function prevAgent() {
+            agentPage -= 1;
+            if (agentPage < 1) agentPage = agentFinalPage;
+            getAgents();
         }
-    };
 
-    function prevAgent() {
-        agentPage -= 1;
-        if (agentPage < 1) agentPage = agentFinalPage;
-        getAgents();
-    }
+        function nextAgent() {
+            agentPage += 1;
+            if (agentPage > agentFinalPage) agentPage = 1;
+            getAgents();
+        }
 
-    function nextAgent() {
-        agentPage += 1;
-        if (agentPage > agentFinalPage) agentPage = 1;
-        getAgents();
-    }
+        // game mode
+        const getGamemodes = async () => {
+            elGamemodes.innerHTML = '';
 
-    // game mode
-    const getGamemodes = async () => {
-        elGamemodes.innerHTML = '';
+            const response = await fetch('https://valorant-api.com/v1/gamemodes');
+            const result = await response.json();
+            const gamemodes = result.data;
 
-        const response = await fetch('https://valorant-api.com/v1/gamemodes');
-        const result = await response.json();
-        const gamemodes = result.data;
+            for (var i = 0; i < gamemodes.length; i++) {
 
-        for (var i = 0; i < gamemodes.length; i++) {
+                var image = gamemodes[i].displayIcon;
+                var name = gamemodes[i].displayName;
 
-            var image = gamemodes[i].displayIcon;
-            var name = gamemodes[i].displayName;
+                if (!image) continue;
 
-            if (!image) continue; 
-
-            elGamemodes.innerHTML += `
+                elGamemodes.innerHTML += `
                 <div class="card m-2 p-3 text-white text-center" style="width: 15rem; background-color: rgba(255,255,255,0.08);">
                     <img src="` + image + `" class="img-fluid mx-auto" style="width: 80px;" alt="` + name + `">
                     <div class="card-body">
@@ -249,35 +258,35 @@
                     </div>
                 </div>
             `;
-        }
-    };
+            }
+        };
 
-    // skin bundles
-    var skinPage = parseInt(urlParams.get('skinPage')) || 1;
-    var skinFinalPage = 1;
+        // skin bundles
+        var skinPage = parseInt(urlParams.get('skinPage')) || 1;
+        var skinFinalPage = 1;
 
-    const getSkins = async () => {
-        elSkins.innerHTML = '';
-        document.getElementById('skinpage').innerHTML = skinPage;
+        const getSkins = async () => {
+            elSkins.innerHTML = '';
+            document.getElementById('skinpage').innerHTML = skinPage;
 
-        const response = await fetch('https://valorant-api.com/v1/bundles');
-        const result = await response.json();
-        const bundles = result.data.filter(b => b.displayIcon); 
+            const response = await fetch('https://valorant-api.com/v1/bundles');
+            const result = await response.json();
+            const bundles = result.data.filter(b => b.displayIcon);
 
-        skinFinalPage = Math.ceil(bundles.length / perPage);
+            skinFinalPage = Math.ceil(bundles.length / perPage);
 
-        var start = (skinPage - 1) * perPage;
-        var end = Math.min(skinPage * perPage, bundles.length);
+            var start = (skinPage - 1) * perPage;
+            var end = Math.min(skinPage * perPage, bundles.length);
 
-        var cards = '';
+            var cards = '';
 
-        for (var i = start; i < end; i++) {
+            for (var i = start; i < end; i++) {
 
-            var image = bundles[i].displayIcon;
-            var name = bundles[i].displayName;
-            var id = bundles[i].uuid;
+                var image = bundles[i].displayIcon;
+                var name = bundles[i].displayName;
+                var id = bundles[i].uuid;
 
-            cards += `
+                cards += `
             <a href="weapon_view.html?id=` + id + `&page=` + skinPage + `" class="text-decoration-none">
                 <div class="card m-2 p-3 text-white text-center" style="width: 20rem; background-color: rgba(255,255,255,0.08);">
                     <div class="d-flex align-items-center justify-content-center" style="height: 300px;">
@@ -288,40 +297,96 @@
                     </div>
                 </div>
             </a>`;
+            }
+
+            elSkins.innerHTML = cards;
+        };
+
+        function prevSkin() {
+            skinPage -= 1;
+            if (skinPage < 1) skinPage = skinFinalPage;
+            getSkins();
         }
 
-        elSkins.innerHTML = cards;
-    };
+        function nextSkin() {
+            skinPage += 1;
+            if (skinPage > skinFinalPage) skinPage = 1;
+            getSkins();
+        }
 
-    function prevSkin() {
-        skinPage -= 1;
-        if (skinPage < 1) skinPage = skinFinalPage;
+        // map
+        var mapPage = parseInt(urlParams.get('mapPage')) || 1;
+        var mapFinalPage = 1;
+
+        const getMaps = async () => {
+            elMaps.innerHTML = '';
+            document.getElementById('mappage').innerHTML = mapPage;
+
+            const response = await fetch('https://valorant-api.com/v1/maps');
+            const result = await response.json();
+            const maps = result.data.filter(m => m.splash); // drop entries with no image
+
+            mapFinalPage = Math.ceil(maps.length / perPage);
+
+            var start = (mapPage - 1) * perPage;
+            var end = Math.min(mapPage * perPage, maps.length);
+
+            var cards = '';
+
+            for (var i = start; i < end; i++) {
+
+                var image = maps[i].splash;
+                var name = maps[i].displayName;
+                var minimap = maps[i].displayIcon;
+                var coords = maps[i].coordinates ? maps[i].coordinates : '';
+
+                cards += `
+                    <div class="card m-2 p-0 text-white overflow-hidden" style="width: 25rem; background-color: rgba(255,255,255,0.08);">
+                        <img src="` + image + `" class="w-100" style="height: 180px; object-fit: cover;" loading="lazy" alt="` + name + `">
+                        <div class="card-body d-flex align-items-center justify-content-between">
+                            <div>
+                                <h5 class="card-title mb-0">` + name + `</h5>
+                                <small class="text-secondary">` + coords + `</small>
+                            </div>
+                            ` + (minimap ? '<img src="' + minimap + '" style="width: 60px;" alt="' + name + ' minimap">' : '') + `
+                        </div>
+                    </div>
+                    `;
+            }
+
+            elMaps.innerHTML = cards;
+        };
+
+        function prevMap() {
+            mapPage -= 1;
+            if (mapPage < 1) mapPage = mapFinalPage;
+            getMaps();
+        }
+
+        function nextMap() {
+            mapPage += 1;
+            if (mapPage > mapFinalPage) mapPage = 1;
+            getMaps();
+        }
+
+        // call fucntion
+        getAgents();
+        getGamemodes();
         getSkins();
-    }
+        getMaps();
 
-    function nextSkin() {
-        skinPage += 1;
-        if (skinPage > skinFinalPage) skinPage = 1;
-        getSkins();
-    }
-
-    // ---------- START ----------
-    getAgents();
-    getGamemodes();
-    getSkins();
-
-    document.querySelectorAll('[data-bs-toggle="pill"]').forEach(btn => {
-        btn.addEventListener('shown.bs.tab', e => {
-            history.replaceState(null, '', e.target.dataset.bsTarget);
+        document.querySelectorAll('[data-bs-toggle="pill"]').forEach(btn => {
+            btn.addEventListener('shown.bs.tab', e => {
+                history.replaceState(null, '', e.target.dataset.bsTarget);
+            });
         });
-    });
 
-    if (location.hash) {
-        const btn = document.querySelector(`[data-bs-target="${location.hash}"]`);
-        if (btn) bootstrap.Tab.getOrCreateInstance(btn).show();
-    }
+        if (location.hash) {
+            const btn = document.querySelector(`[data-bs-target="${location.hash}"]`);
+            if (btn) bootstrap.Tab.getOrCreateInstance(btn).show();
+        }
 
-</script>
+    </script>
 </body>
 
 </html>
